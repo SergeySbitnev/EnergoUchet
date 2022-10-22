@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EnergoUchet.Models.MeterReading>
+
+@{
+    ViewBag.Title = "Показания";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Показания</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MeteringDevice.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReadings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeteringDevice.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateReadings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Экспорт в Excel", "Export")
+</p>

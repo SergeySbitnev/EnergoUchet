@@ -1,0 +1,52 @@
+﻿@model EnergoUchet.Models.MeteringDeviceListViewModel
+
+@{
+    ViewBag.Title = "Приборы учета";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="get">
+    <div class="form-inline">
+        <br />
+        <label class="control-label" style="font-size: 24px">Приборы учета на объектах: </label>
+        @Html.DropDownList("building", Model.Buldings as SelectList, htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Фильтр" class="btn btn-default" />
+    </div>
+</form>
+<br />
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Объект</th>
+        <th>Тип учета</th>
+        <th>Модель</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.MeteringDevices)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnergyResourse.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Экспорт в Excel", "Export")
+</p>

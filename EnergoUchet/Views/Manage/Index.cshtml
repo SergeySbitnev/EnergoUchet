@@ -1,0 +1,28 @@
+﻿@model EnergoUchet.Models.IndexViewModel
+@{
+    ViewBag.Title = "Управление";
+}
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <br />
+    <h4>Меню управления</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Пароль:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Сменить пароль", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        
+    </dl>
+</div>
